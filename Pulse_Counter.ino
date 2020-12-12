@@ -12,7 +12,7 @@ extern "C"{
 
 Pulse pc;
 os_timer_t mTimer;
-volatile int state = 0;
+volatile int state = DO_NOTHING;
 
 
 void tCallback(void *tCall);
@@ -26,9 +26,9 @@ void setup(){
 
 void loop(){
   switch(state){
-    case 1:
+    case PRINT:
       Serial.println(pc.last_pulses());
-      state = 0;
+      state = DO_NOTHING;
       break;
     default:
       break;
@@ -37,7 +37,7 @@ void loop(){
 }
 
 void tCallback(void *tCall){
-  state = 1;
+  state = PRINT;
   pc.pulse_reset();
 }
 
