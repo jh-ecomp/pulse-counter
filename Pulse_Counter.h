@@ -21,6 +21,7 @@ public:
 private:
 	static volatile int pulses_c;
 	static volatile int last_pulses_count;
+  static volatile int pin_c;
 	static void pulses_isr();
 };
 

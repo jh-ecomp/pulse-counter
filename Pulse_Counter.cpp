@@ -10,13 +10,15 @@
 
 volatile int Pulse::last_pulses_count = 0;
 volatile int Pulse::pulses_c = 0;
+volatile int Pulse::pin_c = 0;
 
 Pulse::Pulse(){
 }
 
 void Pulse::begin(int pin){
-	pinMode(pin, INPUT_PULLUP);
-	attachInterrupt(digitalPinToInterrupt(pin), pulses_isr, LOW);
+  pin_c = pin;
+	pinMode(pin_c, INPUT_PULLUP);
+	attachInterrupt(digitalPinToInterrupt(pin_c), pulses_isr, FALLING);
   pulses_c = 0;
   last_pulses_count = 0;
 }
